@@ -1,52 +1,172 @@
 <!DOCTYPE html>
-<html data-theme="base44" lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <link href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68bf376f8feaa0ed086e7792/1357ca15e_Bildschirmfoto2025-06-24um121923.png" rel="icon"/>
-  <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/>
-  <meta content="#000000" name="theme-color"/>
-  <meta content="Your trusted partner for premium real estate services in Switzerland. Discover exclusive investment opportunities, expert buyer advisory, and a curated selection of properties." name="description"/>
-  <meta content="yes" name="mobile-web-app-capable"/>
-  <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
-  <meta content="Base44" name="apple-mobile-web-app-title"/>
-  <link href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68bf376f8feaa0ed086e7792/1357ca15e_Bildschirmfoto2025-06-24um121923.png" rel="apple-touch-icon"/>
-  <link href="https://immowell.base44.app/manifest.json" rel="manifest">
-   <title>
-    Immowell.ch
-   </title>
-   <script src="https://cdn.tailwindcss.com">
-   </script>
-   <meta content="website" property="og:type">
-    <meta content="https://immowell.base44.app" property="og:url">
-     <meta content="Immowell.ch" property="og:title">
-      <meta content="Your trusted partner for premium real estate services in Switzerland. Discover exclusive investment opportunities, expert buyer advisory, and a curated selection of properties." property="og:description"/>
-      <meta content="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68bf376f8feaa0ed086e7792/1357ca15e_Bildschirmfoto2025-06-24um121923.png" property="og:image"/>
-      <meta content="summary_large_image" property="twitter:card"/>
-      <meta content="https://immowell.base44.app" property="twitter:url"/>
-      <meta content="Immowell.ch" property="twitter:title"/>
-      <meta content="Your trusted partner for premium real estate services in Switzerland. Discover exclusive investment opportunities, expert buyer advisory, and a curated selection of properties." property="twitter:description"/>
-      <meta content="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68bf376f8feaa0ed086e7792/1357ca15e_Bildschirmfoto2025-06-24um121923.png" property="twitter:image"/>
-      <script>
-       !function(n,u){n._rwq=u,n[u]=n[u]||function(){(n[u].q=n[u].q||[]).push(arguments)}}(window,"rewardful")
-      </script>
-      <script async="" data-rewardful="0259ba" src="https://r.wdfl.co/rw.js">
-      </script>
-      <script defer="defer" src="/static/js/vendors.0bddaf73.js">
-      </script>
-      <script defer="defer" src="/static/js/main.22a3c326.js">
-      </script>
-      <link href="/static/css/vendors.77bf307e.css" rel="stylesheet"/>
-      <link href="/static/css/main.3dde6335.css" rel="stylesheet"/>
-     </meta>
-    </meta>
-   </meta>
-  </link>
- </head>
- <body>
-  <noscript>
-   You need to enable JavaScript to run this app.
-  </noscript>
-  <div id="root">
-  </div>
- </body>
-</html>
+
+import React from "react";
+import { Link } from "react-router-dom";
+import { createPageUrl } from "@/utils";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowRight, Users, TrendingUp, Building } from "lucide-react";
+import { useTranslations } from '@/components/LanguageProvider';
+
+export default function HomePage() {
+  const { t } = useTranslations();
+
+  const services = [
+    {
+      title: t('home_service_1_title'),
+      description: t('home_service_1_desc'),
+      icon: Users,
+      link: createPageUrl("BuyerAdvisory"),
+    },
+    {
+      title: t('home_service_2_title'),
+      description: t('home_service_2_desc'),
+      icon: TrendingUp,
+      link: createPageUrl("Investments"),
+    },
+    {
+      title: t('home_service_3_title'),
+      description: t('home_service_3_desc'),
+      icon: Building,
+      link: createPageUrl("Properties"),
+    }
+  ];
+
+  return (
+    <div className="bg-white">
+      {/* Hero Section */}
+      <section className="relative h-[70vh] min-h-[500px] flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68bf376f8feaa0ed086e7792/03c5ac405_HD-wallpaper-modern-house-modern-house-floor-plants.jpg')"
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-black opacity-30"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              {t('home_hero_title')}
+            </h1>
+            <p className="text-xl mb-8 text-gray-100 leading-relaxed">
+              {t('home_hero_subtitle')}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                size="lg" 
+                className="bg-white hover:bg-gray-200 text-black px-8 py-3 text-base font-semibold"
+                asChild
+              >
+                <Link to={createPageUrl("Properties")}>
+                  {t('home_hero_button')} <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-left mb-16 max-w-2xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {t('home_services_title')}
+            </h2>
+            <p className="text-lg text-gray-600">
+              {t('home_services_subtitle')}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="bg-white border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-8">
+                  <div className="w-12 h-12 border border-gray-200 rounded-lg flex items-center justify-center mb-6">
+                    <service.icon className="w-6 h-6 text-gray-800" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <Button 
+                    variant="ghost" 
+                    className="text-black hover:bg-gray-100 p-0 h-auto font-semibold group"
+                    asChild
+                  >
+                    <Link to={service.link}>
+                      {t('learn_more')} <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Properties Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                {t('home_featured_title')}
+              </h2>
+              <p className="text-lg text-gray-600">
+                {t('home_featured_subtitle')}
+              </p>
+            </div>
+            <Button variant="outline" asChild>
+              <Link to={createPageUrl("Properties")}>{t('home_featured_button')}</Link>
+            </Button>
+          </div>
+          {/* Placeholder for a few featured property cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="border rounded-lg overflow-hidden group">
+              <div className="h-80 bg-gray-100 bg-cover bg-center" style={{backgroundImage: "url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop')"}}></div>
+              <div className="p-6 bg-white">
+                <p className="text-gray-500 text-sm">Villa in Zug</p>
+                <h3 className="text-xl font-bold my-2">Lakeside Modern Villa</h3>
+                <p className="font-semibold text-lg">CHF 2,850,000</p>
+              </div>
+            </div>
+            <div className="border rounded-lg overflow-hidden group">
+              <div className="h-80 bg-gray-100 bg-cover bg-center" style={{backgroundImage: "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop')"}}></div>
+              <div className="p-6 bg-white">
+                <p className="text-gray-500 text-sm">Apartment in Zurich</p>
+                <h3 className="text-xl font-bold my-2">Minimalist Urban Loft</h3>
+                <p className="font-semibold text-lg">CHF 1,250,000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gray-900 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            {t('home_cta_title')}
+          </h2>
+          <p className="text-xl mb-8 text-gray-300">
+            {t('home_cta_subtitle')}
+          </p>
+          <Button 
+            size="lg" 
+            className="bg-white text-black hover:bg-gray-200 px-8 py-3 text-base"
+            asChild
+          >
+            <Link to={createPageUrl("Contact")}>
+              {t('home_cta_button')} <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </Button>
+        </div>
+      </section>
+    </div>
+  );
+}
+
